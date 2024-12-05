@@ -1,4 +1,4 @@
-# LSM--SQL
+# LMS--SQL
 Library Management System Project Using SQL
 ## Project Overview
 
