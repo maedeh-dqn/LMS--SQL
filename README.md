@@ -173,11 +173,58 @@ The following SQL queries were used to address specific questions:
 ```sql
 select category, count(*) as no_books from books
 group by category;
+
+--We can also answer this question in the following manner. Every time we want to retrive a specific category, we just change the where clause. --
+
+select * from books
+where category = 'History';
 ```
 
+**Task 8: Find Total Rental Income by Category.**
 
+```sql
+select 
+	b.category, 
+	sum(b.rental_price), 
+	count(*)
+from books as b
+join issued_status as iss_stat
+	on b.isbn = iss_stat.issued_book_isbn
+group by b.category;
+```
 
+**Task 9: List Members Who Registered in the Last 180 Days.**
 
+```sql
+select * from members
+where reg_date >= current_date - interval '180 days';
+```
+
+**Task 10: List Employees with Their Branch Manager's Name and their branch details.**
+
+```sql
+select 
+	e1.*,
+	b.manager_id, 
+	e2.emp_name as manager 
+from employees as e1
+join branch as b
+	on b.branch_id = e1.branch_id
+join employees as e2
+	on e2.emp_id = b.manager_id
+order by manager;
+```
+
+**Task 11: Create a Table of Books with Rental Price Above a Certain Threshold 6USD.**
+
+```sql
+create table books_price_greater_than_six_usd 
+as
+select * from books
+where rental_price > 6;
+
+select * from books_price_greater_than_six_usd;
+```
 
 
 
