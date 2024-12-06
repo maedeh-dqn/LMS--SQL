@@ -68,7 +68,7 @@ create table members
 		member_name varchar(25),
 		member_address varchar(75),
 		reg_date date
-);
+	);
 
 --5-- Creating issued_status table
 create table issued_status 
