@@ -226,8 +226,13 @@ where rental_price > 6;
 select * from books_price_greater_than_six_usd;
 ```
 
+**Task 12: Retrieve the List of Books Not Yet Returned.**
 
-
-
-
+```sql
+select distinct ist.issued_book_name 
+from issued_status as ist
+left join return_status as rs
+	on ist.issued_id = rs.issued_id
+where rs.return_id IS NULL;
+```
 
